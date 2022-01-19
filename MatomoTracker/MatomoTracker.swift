@@ -443,14 +443,14 @@ extension MatomoTracker {
         track(view: view, url: url, dimensions: [])
     }
     
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil) {
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil, pc: String = "", module:String = "", component: String = "") {
         let value = number == nil ? nil : number!.floatValue
-        track(eventWithCategory: category, action: action, name: name, value: value, url: url)
+        track(eventWithCategory: category, action: action, name: name, value: value, url: url, pc: pc, module: module, component: component)
     }
     
     @available(*, deprecated, message: "use track(eventWithCategory:action:name:number:url instead")
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil) {
-        track(eventWithCategory: category, action: action, name: name, number: number, url: nil)
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, pc: String = "", module:String = "", component: String = "") {
+        track(eventWithCategory: category, action: action, name: name, number: number, url: nil, pc: pc, module: module, component: component)
     }
     
     @objc public func trackSearch(query: String, category: String?, resultCount: Int, url: URL? = nil) {
