@@ -96,10 +96,26 @@ public struct Event: Codable {
     let orderShippingCost: Float?
     let orderDiscount: Float?
     let orderLastDate: Date?
+    
+    
+    // 以下新增jjs
+    /// cookie中的JJABID
+    let jjbid:String?
+    /// 页面code
+    let pc: String?
+    /// 国家语言
+    let ul: String?
+    /// 货币符号
+    let um: String?
+    let module: String?
+    let component: String?
+    let ua: String?
+    
 }
 
 extension Event {
-    public init(tracker: MatomoTracker, action: [String], url: URL? = nil, referer: URL? = nil, eventCategory: String? = nil, eventAction: String? = nil, eventName: String? = nil, eventValue: Float? = nil, customTrackingParameters: [String:String] = [:], searchQuery: String? = nil, searchCategory: String? = nil, searchResultsCount: Int? = nil, dimensions: [CustomDimension] = [], variables: [CustomVariable] = [], contentName: String? = nil, contentInteraction: String? = nil, contentPiece: String? = nil, contentTarget: String? = nil, goalId: Int? = nil, revenue: Float? = nil, orderId: String? = nil, orderItems: [OrderItem] = [], orderRevenue: Float? = nil, orderSubTotal: Float? = nil, orderTax: Float? = nil, orderShippingCost: Float? = nil, orderDiscount: Float? = nil, orderLastDate: Date? = nil, isCustomAction: Bool) {
+    public init(tracker: MatomoTracker, action: [String], url: URL? = nil, referer: URL? = nil, eventCategory: String? = nil, eventAction: String? = nil, eventName: String? = nil, eventValue: Float? = nil, customTrackingParameters: [String:String] = [:], searchQuery: String? = nil, searchCategory: String? = nil, searchResultsCount: Int? = nil, dimensions: [CustomDimension] = [], variables: [CustomVariable] = [], contentName: String? = nil, contentInteraction: String? = nil, contentPiece: String? = nil, contentTarget: String? = nil, goalId: Int? = nil, revenue: Float? = nil, orderId: String? = nil, orderItems: [OrderItem] = [], orderRevenue: Float? = nil, orderSubTotal: Float? = nil, orderTax: Float? = nil, orderShippingCost: Float? = nil, orderDiscount: Float? = nil, orderLastDate: Date? = nil, isCustomAction: Bool,
+                pc: String = "", module:String = "", component: String = "") {
         self.siteId = tracker.siteId
         self.uuid = UUID()
         self.visitor = tracker.visitor
@@ -137,5 +153,15 @@ extension Event {
         self.orderDiscount = orderDiscount
         self.orderLastDate = orderLastDate
         self.isCustomAction = isCustomAction
+        
+        // 以下新增jjs
+        self.jjbid = tracker.visitor.jjbid
+        self.ul = tracker.visitor.ul
+        self.um = tracker.visitor.um
+        self.ua = tracker.visitor.userAgent
+        
+        self.pc = pc
+        self.module = module
+        self.component = component
     }
 }

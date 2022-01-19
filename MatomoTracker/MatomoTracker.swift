@@ -308,8 +308,8 @@ extension MatomoTracker {
     ///   - value: The optional value of the Event
     ///   - dimensions: An optional array of dimensions, that will be set only in the scope of this event.
     ///   - url: The optional url of the page that was viewed.
-    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil) {
-        let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true)
+    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "") {
+        let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true, pc: pc, module: module,component: component)
         queue(event: event)
     }
     

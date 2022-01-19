@@ -13,6 +13,16 @@ struct Visitor: Codable {
     /// An optional user identifier such as email or username.
     /// api-key: uid
     let userId: String?
+    
+    
+    // 以下新增jjs
+    /// cookie中的JJABID
+    var jjbid:String = ""
+    /// 国家语言
+    var ul: String = "en"
+    /// 货币符号
+    var um: String = "$"
+    var userAgent: String = ""
 }
 
 extension Visitor {

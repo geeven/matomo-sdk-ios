@@ -45,6 +45,19 @@ fileprivate extension Event {
             let lastOrderTimestamp = orderLastDate != nil ? "\(Int(orderLastDate!.timeIntervalSince1970))" : nil
             
             let items = [
+                // 以下新增jjs
+                URLQueryItem(name: "_v", value: "3"),
+                URLQueryItem(name: "_uuid", value: uuid.uuidString),
+                URLQueryItem(name: "tv", value: jjbid),
+                URLQueryItem(name: "pc", value: pc),
+                URLQueryItem(name: "ul", value: ul),
+                URLQueryItem(name: "um", value: um),
+                URLQueryItem(name: "pl", value: "ios"),
+                URLQueryItem(name: "md", value: module),
+                URLQueryItem(name: "mdc", value: component),
+                // 以上新增jjs
+                
+                
                 URLQueryItem(name: "idsite", value: siteId),
                 URLQueryItem(name: "rec", value: "1"),
                 URLQueryItem(name: "ca", value: isCustomAction ? "1" : nil),
