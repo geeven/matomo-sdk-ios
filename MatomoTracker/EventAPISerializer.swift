@@ -55,6 +55,8 @@ fileprivate extension Event {
                 URLQueryItem(name: "pl", value: "ios"),
                 URLQueryItem(name: "md", value: module),
                 URLQueryItem(name: "mdc", value: component),
+                URLQueryItem(name: "ua", value: ua),
+                
                 // 以上新增jjs
                 
                 
