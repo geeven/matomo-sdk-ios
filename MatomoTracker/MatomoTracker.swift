@@ -308,8 +308,8 @@ extension MatomoTracker {
     ///   - value: The optional value of the Event
     ///   - dimensions: An optional array of dimensions, that will be set only in the scope of this event.
     ///   - url: The optional url of the page that was viewed.
-    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",ua: String = "",jjbid: String = "") {
-        let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true, pc: pc, module: module,component: component, ul: ul, um:um, ua: ua, jjbid: jjbid)
+    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "") {
+        let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true, pc: pc, module: module,component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd)
         queue(event: event)
     }
     
@@ -443,14 +443,14 @@ extension MatomoTracker {
         track(view: view, url: url, dimensions: [])
     }
     
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "") {
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "") {
         let value = number == nil ? nil : number!.floatValue
-        track(eventWithCategory: category, action: action, name: name, value: value, url: url, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid)
+        track(eventWithCategory: category, action: action, name: name, value: value, url: url, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd)
     }
     
     @available(*, deprecated, message: "use track(eventWithCategory:action:name:number:url instead")
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "") {
-        track(eventWithCategory: category, action: action, name: name, number: number, url: nil, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid)
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "") {
+        track(eventWithCategory: category, action: action, name: name, number: number, url: nil, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd)
     }
     
     @objc public func trackSearch(query: String, category: String?, resultCount: Int, url: URL? = nil) {
