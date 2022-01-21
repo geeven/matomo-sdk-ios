@@ -30,7 +30,7 @@ public final class URLSessionDispatcher: Dispatcher {
             failure(error)
             return
         }
-        let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/json; charset=utf-8", body: jsonBody)
+        let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/x-www-form-urlencoded; charset=utf-8", body: jsonBody)
         send(request: request, success: success, failure: failure)
     }
     
