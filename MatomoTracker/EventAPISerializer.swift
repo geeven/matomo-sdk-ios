@@ -56,7 +56,8 @@ fileprivate extension Event {
                 URLQueryItem(name: "md", value: module),
                 URLQueryItem(name: "mdc", value: component),
                 URLQueryItem(name: "ua", value: ua),
-                
+                URLQueryItem(name: "e", value: eventAction),
+                URLQueryItem(name: "sr", value:String(format: "%1.0fx%1.0f", screenResolution.width, screenResolution.height)),
                 // 以上新增jjs
                 
                 
