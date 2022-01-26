@@ -23,15 +23,26 @@ public final class URLSessionDispatcher: Dispatcher {
     }
     
     public func send(events: [Event], success: @escaping ()->(), failure: @escaping (_ error: Error)->()) {
-        let jsonBody: Data
-        do {
-            jsonBody = try serializer.jsonData(for: events)
-        } catch  {
-            failure(error)
-            return
+        events.map { event  in
+            let jsonBody: Data
+            do {
+                jsonBody = try serializer.jsonData(for: [event])
+            } catch  {
+                failure(error)
+                return
+            }
+            let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/x-www-form-urlencoded; charset=utf-8", body: jsonBody)
+            send(request: request, success: success, failure: failure)
         }
-        let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/x-www-form-urlencoded; charset=utf-8", body: jsonBody)
-        send(request: request, success: success, failure: failure)
+//        let jsonBody: Data
+//        do {
+//            jsonBody = try serializer.jsonData(for: events)
+//        } catch  {
+//            failure(error)
+//            return
+//        }
+//        let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/x-www-form-urlencoded; charset=utf-8", body: jsonBody)
+//        send(request: request, success: success, failure: failure)
     }
     
     private func buildRequest(baseURL: URL, method: String, contentType: String? = nil, body: Data? = nil) -> URLRequest {

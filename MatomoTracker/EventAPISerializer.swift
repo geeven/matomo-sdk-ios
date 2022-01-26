@@ -16,7 +16,19 @@ final class EventAPISerializer {
                 "\($0.key)=\($0.value)"
             }.joined(separator: "&")
         }
+        print("-------track-----start0----------")
+        print(serializedEvents.count)
+        print(serializedEvents)
+        let dataStr = serializedEvents[0]
+        print(dataStr)
+        print("-------track-----start0----------  end---")
+        if let data = dataStr.data(using: .utf8){
+            return data
+        }
         let body = ["requests": serializedEvents.map({ "?\($0)" })]
+        print(body)
+        
+        
         return try JSONSerialization.data(withJSONObject: body, options: [])
     }
 }
@@ -42,12 +54,19 @@ fileprivate extension Event {
 
     var queryItems: [URLQueryItem] {
         get {
-            let lastOrderTimestamp = orderLastDate != nil ? "\(Int(orderLastDate!.timeIntervalSince1970))" : nil
+//            let lastOrderTimestamp = orderLastDate != nil ? "\(Int(orderLastDate!.timeIntervalSince1970))" : nil
             
             let items = [
                 // 以下新增jjs
                 URLQueryItem(name: "_v", value: "3"),
                 URLQueryItem(name: "_uuid", value: uuid.uuidString),
+                URLQueryItem(name: "uid", value: visitor.userId),
+                URLQueryItem(name: "ua", value: ua),
+                URLQueryItem(name: "sr", value:String(format: "%1.0fx%1.0f", screenResolution.width, screenResolution.height)),
+                URLQueryItem(name: "e", value: eventAction),
+                URLQueryItem(name: "e_c", value: eventCategory),
+                URLQueryItem(name: "e_n", value: eventName),
+                
                 URLQueryItem(name: "tv", value: jjbid),
                 URLQueryItem(name: "pc", value: pc),
                 URLQueryItem(name: "ul", value: ul),
@@ -55,68 +74,70 @@ fileprivate extension Event {
                 URLQueryItem(name: "pl", value: "ios"),
                 URLQueryItem(name: "md", value: module),
                 URLQueryItem(name: "mdc", value: component),
-                URLQueryItem(name: "ua", value: ua),
-                URLQueryItem(name: "e", value: eventAction),
                 URLQueryItem(name: "gd", value: gd),
-                URLQueryItem(name: "sr", value:String(format: "%1.0fx%1.0f", screenResolution.width, screenResolution.height)),
+
+                URLQueryItem(name: "v", value: "visitor.userId\(date.timeIntervalSince1970)"),
+                URLQueryItem(name: "sc", value: uuid.uuidString),
+                
+               
                 // 以上新增jjs
                 
                 
-                URLQueryItem(name: "idsite", value: siteId),
-                URLQueryItem(name: "rec", value: "1"),
-                URLQueryItem(name: "ca", value: isCustomAction ? "1" : nil),
-                // Visitor
-                URLQueryItem(name: "_id", value: visitor.id),
-                URLQueryItem(name: "cid", value: visitor.forcedId),
-                URLQueryItem(name: "uid", value: visitor.userId),
-                
-                // Session
-                URLQueryItem(name: "_idvc", value: "\(session.sessionsCount)"),
-                URLQueryItem(name: "_viewts", value: "\(Int(session.lastVisit.timeIntervalSince1970))"),
-                URLQueryItem(name: "_idts", value: "\(Int(session.firstVisit.timeIntervalSince1970))"),
-                
-                URLQueryItem(name: "url", value:url?.absoluteString),
-                URLQueryItem(name: "action_name", value: actionName.joined(separator: "/")),
-                URLQueryItem(name: "lang", value: language),
-                URLQueryItem(name: "urlref", value: referer?.absoluteString),
-                URLQueryItem(name: "new_visit", value: isNewSession ? "1" : nil),
-                
-                URLQueryItem(name: "h", value: DateFormatter.hourDateFormatter.string(from: date)),
-                URLQueryItem(name: "m", value: DateFormatter.minuteDateFormatter.string(from: date)),
-                URLQueryItem(name: "s", value: DateFormatter.secondsDateFormatter.string(from: date)),
-
-                URLQueryItem(name: "cdt", value: DateFormatter.iso8601DateFormatter.string(from: date)),
-                
-                //screen resolution
-                URLQueryItem(name: "res", value:String(format: "%1.0fx%1.0f", screenResolution.width, screenResolution.height)),
-                
-                URLQueryItem(name: "e_c", value: eventCategory),
-                URLQueryItem(name: "e_a", value: eventAction),
-                URLQueryItem(name: "e_n", value: eventName),
-                URLQueryItem(name: "e_v", value: eventValue != nil ? "\(eventValue!)" : nil),
-                
-                URLQueryItem(name: "_rcn", value: campaignName),
-                URLQueryItem(name: "_rck", value: campaignKeyword),
-
-                URLQueryItem(name: "search", value: searchQuery),
-                URLQueryItem(name: "search_cat", value: searchCategory),
-                URLQueryItem(name: "search_count", value: searchResultsCount != nil ? "\(searchResultsCount!)" : nil),
-                
-                URLQueryItem(name: "c_n", value: contentName),
-                URLQueryItem(name: "c_p", value: contentPiece),
-                URLQueryItem(name: "c_t", value: contentTarget),
-                URLQueryItem(name: "c_i", value: contentInteraction),
-                
-                URLQueryItem(name: "idgoal", value: goalId != nil ? "\(goalId!)" : nil),
-                URLQueryItem(name: "revenue", value: revenue != nil ? "\(revenue!)" : nil),
-
-                URLQueryItem(name: "ec_id", value: orderId),
-                URLQueryItem(name: "revenue", value: orderRevenue != nil ? "\(orderRevenue!)" : nil),
-                URLQueryItem(name: "ec_st", value: orderSubTotal != nil ? "\(orderSubTotal!)" : nil),
-                URLQueryItem(name: "ec_tx", value: orderTax != nil ? "\(orderTax!)" : nil),
-                URLQueryItem(name: "ec_sh", value: orderShippingCost != nil ? "\(orderShippingCost!)" : nil),
-                URLQueryItem(name: "ec_dt", value: orderDiscount != nil ? "\(orderDiscount!)" : nil),
-                URLQueryItem(name: "_ects", value: lastOrderTimestamp),
+//                URLQueryItem(name: "idsite", value: siteId),
+//                URLQueryItem(name: "rec", value: "1"),
+//                URLQueryItem(name: "ca", value: isCustomAction ? "1" : nil),
+//                // Visitor
+//                URLQueryItem(name: "_id", value: visitor.id),
+//                URLQueryItem(name: "cid", value: visitor.forcedId),
+//
+//
+//                // Session
+//                URLQueryItem(name: "_idvc", value: "\(session.sessionsCount)"),
+//                URLQueryItem(name: "_viewts", value: "\(Int(session.lastVisit.timeIntervalSince1970))"),
+//                URLQueryItem(name: "_idts", value: "\(Int(session.firstVisit.timeIntervalSince1970))"),
+//
+//                URLQueryItem(name: "url", value:url?.absoluteString),
+//                URLQueryItem(name: "action_name", value: actionName.joined(separator: "/")),
+//                URLQueryItem(name: "lang", value: language),
+//                URLQueryItem(name: "urlref", value: referer?.absoluteString),
+//                URLQueryItem(name: "new_visit", value: isNewSession ? "1" : nil),
+//
+//                URLQueryItem(name: "h", value: DateFormatter.hourDateFormatter.string(from: date)),
+//                URLQueryItem(name: "m", value: DateFormatter.minuteDateFormatter.string(from: date)),
+//                URLQueryItem(name: "s", value: DateFormatter.secondsDateFormatter.string(from: date)),
+//
+//                URLQueryItem(name: "cdt", value: DateFormatter.iso8601DateFormatter.string(from: date)),
+//
+//                //screen resolution
+//                URLQueryItem(name: "res", value:String(format: "%1.0fx%1.0f", screenResolution.width, screenResolution.height)),
+//
+//
+//                URLQueryItem(name: "e_a", value: eventAction),
+//
+//                URLQueryItem(name: "e_v", value: eventValue != nil ? "\(eventValue!)" : nil),
+//
+//                URLQueryItem(name: "_rcn", value: campaignName),
+//                URLQueryItem(name: "_rck", value: campaignKeyword),
+//
+//                URLQueryItem(name: "search", value: searchQuery),
+//                URLQueryItem(name: "search_cat", value: searchCategory),
+//                URLQueryItem(name: "search_count", value: searchResultsCount != nil ? "\(searchResultsCount!)" : nil),
+//
+//                URLQueryItem(name: "c_n", value: contentName),
+//                URLQueryItem(name: "c_p", value: contentPiece),
+//                URLQueryItem(name: "c_t", value: contentTarget),
+//                URLQueryItem(name: "c_i", value: contentInteraction),
+//
+//                URLQueryItem(name: "idgoal", value: goalId != nil ? "\(goalId!)" : nil),
+//                URLQueryItem(name: "revenue", value: revenue != nil ? "\(revenue!)" : nil),
+//
+//                URLQueryItem(name: "ec_id", value: orderId),
+//                URLQueryItem(name: "revenue", value: orderRevenue != nil ? "\(orderRevenue!)" : nil),
+//                URLQueryItem(name: "ec_st", value: orderSubTotal != nil ? "\(orderSubTotal!)" : nil),
+//                URLQueryItem(name: "ec_tx", value: orderTax != nil ? "\(orderTax!)" : nil),
+//                URLQueryItem(name: "ec_sh", value: orderShippingCost != nil ? "\(orderShippingCost!)" : nil),
+//                URLQueryItem(name: "ec_dt", value: orderDiscount != nil ? "\(orderDiscount!)" : nil),
+//                URLQueryItem(name: "_ects", value: lastOrderTimestamp),
             ]
 
             let dimensionItems = dimensions.map { URLQueryItem(name: "dimension\($0.index)", value: $0.value) }
