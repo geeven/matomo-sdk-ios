@@ -308,7 +308,7 @@ extension MatomoTracker {
     ///   - value: The optional value of the Event
     ///   - dimensions: An optional array of dimensions, that will be set only in the scope of this event.
     ///   - url: The optional url of the page that was viewed.
-    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: String = "", jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
+    public func track(eventWithCategory category: String, action: String, name: String? = nil, value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
         let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true, pc: pc, module: module,component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd,jjs_s: jjs_s, jjs_l: jjs_l, jjs_r: jjs_r, jjs_dp: jjs_dp, jjs_ctTwo: jjs_ctTwo, jjs_ctOne: jjs_ctOne)
         queue(event: event)
     }
@@ -443,13 +443,13 @@ extension MatomoTracker {
         track(view: view, url: url, dimensions: [])
     }
     
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: String = "", jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, url: URL? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
         let value = number == nil ? 0 : number!.floatValue
         track(eventWithCategory: category, action: action, name: name, value: value, url: url, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd, jjs_s: jjs_s, jjs_l: jjs_l, jjs_r: jjs_r, jjs_dp: jjs_dp, jjs_ctTwo: jjs_ctTwo, jjs_ctOne: jjs_ctOne)
     }
     
     @available(*, deprecated, message: "use track(eventWithCategory:action:name:number:url instead")
-    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: String = "", jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
+    @objc public func track(eventWithCategory category: String, action: String, name: String? = nil, number: NSNumber? = nil, pc: String = "", module:String = "", component: String = "", ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
         track(eventWithCategory: category, action: action, name: name, number: number, url: nil, pc: pc, module: module, component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd, jjs_s: jjs_s, jjs_l: jjs_l, jjs_r: jjs_r,
               jjs_dp: jjs_dp, jjs_ctTwo: jjs_ctTwo, jjs_ctOne: jjs_ctOne)
     }
