@@ -28,7 +28,7 @@ public struct Event: Codable {
     /// api-key: h, m, s
     let date: Date
     
-    /// The full URL for the current action. 
+    /// The full URL for the current action.
     /// api-key: url
     let url: URL?
     
@@ -112,12 +112,20 @@ public struct Event: Codable {
     let ua: String?
     let gd: String?
     
+    let jjs_s: Int?
+    let jjs_l: String?
+    let jjs_r: String?
+    let jjs_dp: String?
+    let jjs_ctOne: Int?
+    let jjs_ctTwo: String?
+    
 }
 
 extension Event {
     public init(tracker: MatomoTracker, action: [String], url: URL? = nil, referer: URL? = nil, eventCategory: String? = nil, eventAction: String? = nil, eventName: String? = nil, eventValue: Float? = nil, customTrackingParameters: [String:String] = [:], searchQuery: String? = nil, searchCategory: String? = nil, searchResultsCount: Int? = nil, dimensions: [CustomDimension] = [], variables: [CustomVariable] = [], contentName: String? = nil, contentInteraction: String? = nil, contentPiece: String? = nil, contentTarget: String? = nil, goalId: Int? = nil, revenue: Float? = nil, orderId: String? = nil, orderItems: [OrderItem] = [], orderRevenue: Float? = nil, orderSubTotal: Float? = nil, orderTax: Float? = nil, orderShippingCost: Float? = nil, orderDiscount: Float? = nil, orderLastDate: Date? = nil, isCustomAction: Bool,
                 pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",
-                ua: String = "", jjbid: String = "", gd: String = "") {
+                ua: String = "", jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "",
+                jjs_dp: String = "", jjs_ctTwo: String = "", jjs_ctOne: Int = 0) {
         self.siteId = tracker.siteId
         self.uuid = UUID()
         self.visitor = tracker.visitor
@@ -166,5 +174,12 @@ extension Event {
         self.pc = pc
         self.module = module
         self.component = component
+        
+        self.jjs_s = jjs_s
+        self.jjs_l = jjs_l
+        self.jjs_r = jjs_r
+        self.jjs_dp = jjs_dp
+        self.jjs_ctOne = jjs_ctOne
+        self.jjs_ctTwo = jjs_ctTwo
     }
 }

@@ -79,6 +79,16 @@ fileprivate extension Event {
                 URLQueryItem(name: "v", value: "visitor.userId\(date.timeIntervalSince1970)"),
                 URLQueryItem(name: "sc", value: uuid.uuidString),
                 
+                URLQueryItem(name: "l", value: jjs_l),
+                URLQueryItem(name: "r", value: jjs_r),
+                URLQueryItem(name: "ct2", value: jjs_ctTwo),
+                URLQueryItem(name: "ct1", value: "\(jjs_ctOne)"),
+                URLQueryItem(name: "s", value: "\(jjs_s)"),
+                URLQueryItem(name: "dp", value: "\(jjs_dp)"),
+                
+                
+                
+                
                
                 // 以上新增jjs
                 
