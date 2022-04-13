@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+## 7.6.3
+* **jjshouse** Fixed an issue where the latest version couldn't be installed via SPM. 
 ## 7.6.2
 * **jjshouse** Fixed an issue where the latest version couldn't be installed via SPM. 
 

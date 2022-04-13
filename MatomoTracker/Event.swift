@@ -118,6 +118,13 @@ public struct Event: Codable {
     var jjs_dp: Float = 0
     var jjs_ctOne: Int = 0
     var jjs_ctTwo: String = ""
+    
+    var jjs_cn: String = ""
+    var jjs_cs: String = ""
+    var jjs_cm: String = ""
+    var jjs_ck: String = ""
+    var jjs_cc: String = ""
+    
 }
 
 extension Event {
@@ -130,7 +137,9 @@ extension Event {
                 orderDiscount: Float? = nil, orderLastDate: Date? = nil, isCustomAction: Bool,
                 pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",
                 ua: String = "", jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "",
-                jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0)
+                jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0,
+                jjs_cn: String = "", jjs_cs: String = "", jjs_cm: String = "", jjs_ck: String = "", jjs_cc: String = "")
+
     {
         self.siteId = tracker.siteId
         self.uuid = UUID()
@@ -187,5 +196,12 @@ extension Event {
         self.jjs_dp = jjs_dp
         self.jjs_ctOne = jjs_ctOne
         self.jjs_ctTwo = jjs_ctTwo
+        
+        
+        self.jjs_cn = jjs_cn
+        self.jjs_cs = jjs_cs
+        self.jjs_cm = jjs_cm
+        self.jjs_ck = jjs_ck
+        self.jjs_cc = jjs_cc
     }
 }
