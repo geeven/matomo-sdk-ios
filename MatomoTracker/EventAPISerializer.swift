@@ -77,7 +77,8 @@ fileprivate extension Event {
                 URLQueryItem(name: "gd", value: gd),
 
                 URLQueryItem(name: "v", value: "visitor.userId\(date.timeIntervalSince1970)"),
-                URLQueryItem(name: "sc", value: uuid.uuidString),
+//                URLQueryItem(name: "sc", value: uuid.uuidString),
+                URLQueryItem(name: "sc", value: "\(jjs_sc)"),
                 
                 URLQueryItem(name: "l", value: jjs_l),
                 URLQueryItem(name: "r", value: jjs_r),

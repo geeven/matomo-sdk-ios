@@ -124,6 +124,8 @@ public struct Event: Codable {
     var jjs_cm: String = ""
     var jjs_ck: String = ""
     var jjs_cc: String = ""
+    var jjs_sc: Int = 0
+    
     
 }
 
@@ -138,7 +140,7 @@ extension Event {
                 pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",
                 ua: String = "", jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "",
                 jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0,
-                jjs_cn: String = "", jjs_cs: String = "", jjs_cm: String = "", jjs_ck: String = "", jjs_cc: String = "")
+                jjs_cn: String = "", jjs_cs: String = "", jjs_cm: String = "", jjs_ck: String = "", jjs_cc: String = "", jjs_sc: Int = 0)
 
     {
         self.siteId = tracker.siteId
@@ -203,5 +205,6 @@ extension Event {
         self.jjs_cm = jjs_cm
         self.jjs_ck = jjs_ck
         self.jjs_cc = jjs_cc
+        self.jjs_sc = jjs_sc
     }
 }
