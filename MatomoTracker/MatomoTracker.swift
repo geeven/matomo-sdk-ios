@@ -310,6 +310,7 @@ extension MatomoTracker {
     ///   - url: The optional url of the page that was viewed.
     public func track(eventWithCategory category: String, action: String, name: String = "", value: Float? = nil, dimensions: [CustomDimension] = [], url: URL? = nil, pc: String = "", module:String = "", component: String = "",ul: String = "",um: String = "",ua: String = "",jjbid: String = "", gd: String = "", jjs_s: Int = 0, jjs_l: String = "", jjs_r: String = "", jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0, jjs_cn: String = "", jjs_cs: String = "", jjs_cm: String = "", jjs_ck: String = "", jjs_cc: String = "", jjs_sc: Int = 0 ) {
         let event = Event(tracker: self, action: [], url: url, eventCategory: category, eventAction: action, eventName: name, eventValue: value, dimensions: dimensions, isCustomAction: true, pc: pc, module: module,component: component, ul: ul, um:um, ua: ua, jjbid: jjbid, gd: gd,jjs_s: jjs_s, jjs_l: jjs_l, jjs_r: jjs_r, jjs_dp: jjs_dp, jjs_ctTwo: jjs_ctTwo, jjs_ctOne: jjs_ctOne, jjs_cn: jjs_cn, jjs_cs: jjs_cs, jjs_cm: jjs_cm, jjs_ck: jjs_ck, jjs_cc: jjs_cc, jjs_sc: jjs_sc)
+        print("matomaTracker Test: \(event.uuid)")
         queue(event: event)
     }
     
