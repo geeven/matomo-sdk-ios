@@ -139,7 +139,7 @@ final public class MatomoTracker: NSObject {
     
     // MARK: dispatching
     
-    private let numberOfEventsDispatchedAtOnce = 20
+    private let numberOfEventsDispatchedAtOnce = 1
     private(set) var isDispatching = false
     
     
