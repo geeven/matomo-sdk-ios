@@ -16,17 +16,17 @@ final class EventAPISerializer {
                 "\($0.key)=\($0.value)"
             }.joined(separator: "&")
         }
-        print("-------track-----start0----------")
-        print(serializedEvents.count)
-        print(serializedEvents)
+//        print("-------track-----start0----------")
+//        print(serializedEvents.count)
+//        print(serializedEvents)
         let dataStr = serializedEvents[0]
-        print(dataStr)
-        print("-------track-----start0----------  end---")
+//        print(dataStr)
+//        print("-------track-----start0----------  end---")
         if let data = dataStr.data(using: .utf8){
             return data
         }
         let body = ["requests": serializedEvents.map({ "?\($0)" })]
-        print(body)
+//        print(body)
         
         
         return try JSONSerialization.data(withJSONObject: body, options: [])
