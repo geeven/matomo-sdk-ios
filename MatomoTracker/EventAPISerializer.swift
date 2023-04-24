@@ -92,6 +92,7 @@ fileprivate extension Event {
                 URLQueryItem(name: "cm", value: jjs_cm),
                 URLQueryItem(name: "ck", value: "\(jjs_ck)"),
                 URLQueryItem(name: "cc", value: "\(jjs_cc)"),
+                URLQueryItem(name: "uc", value: "\(jjs_uc)"),
                 
                 
                 
