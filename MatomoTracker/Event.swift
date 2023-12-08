@@ -145,7 +145,7 @@ extension Event {
                 jjs_dp: Float = 0, jjs_ctTwo: String = "", jjs_ctOne: Int = 0,
                 jjs_cn: String = "", jjs_cs: String = "", jjs_cm: String = "", 
                 jjs_ck: String = "", jjs_cc: String = "", jjs_sc: Int = 0,
-                jjs_uc: String = "", jjs_href: String = "", , jjs_fx_uid: String = "")
+                jjs_uc: String = "", jjs_href: String = "", jjs_fx_uid: String = "")
 
     {
         self.siteId = tracker.siteId
