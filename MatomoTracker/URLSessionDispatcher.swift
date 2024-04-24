@@ -32,7 +32,7 @@ public final class URLSessionDispatcher: Dispatcher {
                 return
             }
             let request = buildRequest(baseURL: baseURL, method: "POST", contentType: "application/x-www-form-urlencoded; charset=utf-8", body: jsonBody)
-            print("matomaTracker Test: send(events : \(event.uuid)")
+//            print("matomaTracker Test: send(events : \(event.uuid)")
             send(request: request, success: success, failure: failure)
         }
 //        let jsonBody: Data
